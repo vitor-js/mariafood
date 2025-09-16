@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.js": "/mariafood/static/js/main.26930418.js",
+    "main.js": "/mariafood/static/js/main.264b40f4.js",
     "static/media/carne.png": "/mariafood/static/media/carne.4e2085e5b3ea70aa7e74.png",
     "static/media/frango.png": "/mariafood/static/media/frango.3147bb82d89ddcc5303e.png",
     "static/media/moida.png": "/mariafood/static/media/moida.c2ea1b1888745724bc68.png",
     "static/media/lasanha.png": "/mariafood/static/media/lasanha.b26d34abd35f2053c068.png",
     "static/media/logo_deitada.png": "/mariafood/static/media/logo_deitada.7596cf7d18b1393f6d06.png",
     "index.html": "/mariafood/index.html",
-    "main.26930418.js.map": "/mariafood/static/js/main.26930418.js.map"
+    "main.264b40f4.js.map": "/mariafood/static/js/main.264b40f4.js.map"
   },
   "entrypoints": [
-    "static/js/main.26930418.js"
+    "static/js/main.264b40f4.js"
   ]
 }
