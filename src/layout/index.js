@@ -6,7 +6,7 @@ function Layout({ children }) {
     base: "100%", 
     md: "90%", 
     lg: "80%", 
-    xl: "40%" 
+    xl: "50%" 
   });
   const isMobile = useBreakpointValue({ base: true, md: false });
   

@@ -10,9 +10,13 @@ import {
     ModalBody,
     ModalCloseButton,
     useDisclosure,
+    Badge,
     List,
     ListItem,
-
+Wrap,
+  WrapItem,
+  Tag,
+ 
     ListIcon
 } from '@chakra-ui/react'
 import { IoIosAdd } from "react-icons/io";
@@ -118,56 +122,204 @@ function Index() {
             </Text>
 
         </Flex>
-        {layoutData.map((item) => (
-            <Flex width="100%" flexDirection={"column"}>
-                <Flex width="100%" cursor={"pointer"} background={"#FFF9EA"} marginBottom={5} alignContent={"center"} justifyContent={"center"} >
-                    {item.img}
-                    <Flex flexDirection={"column"} p={3} borderRadius={5} >
-                        <Text onClick={() => {
-                            setModalData(item)
-                            onOpen()
-                        }} fontWeight={700} fontSize={18} >
-                            {item.nome}
-                        </Text>
-                        <Text onClick={() => {
-                            setModalData(item)
-                            onOpen()
-                        }} fontWeight={400} fontSize={16} >
-                            {item.descricao}
-                        </Text>
 
-                        <Text onClick={() => {
-                            setModalData(item)
-                            onOpen()
-                        }} fontWeight={400} fontSize={16} >
-                            R$ {item.preco}
-                        </Text>
+{layoutData.map((item) => (
+  <Flex key={item.nome} mb={5}>
+    <Flex
+      w="100%"
+      bg="#FFF9EA"
+      borderRadius="10px"
+      p={4}
+      // Garante que o conteúdo alinhe corretamente na responsividade
+      align={{ base: "flex-start", md: "center" }} 
+      // Muda a direção: coluna para mobile, linha para desktop
+      direction={{ base: "column", md: "row" }}
+      boxShadow="sm"
+      _hover={{ boxShadow: "md" }}
+      position="relative" // Para posicionar o badge de calorias se necessário
+    >
+      
+      {/* 1. Container da Imagem (Responsivo) */}
+      <Box 
+        // No mobile: centraliza e dá margem inferior
+        // No desktop: margem direita e sem margem inferior
+        mr={{ base: 0, md: 4 }} 
+        mb={{ base: 4, md: 0 }}
+        alignSelf={{ base: "center", md: "flex-start" }}
+        flexShrink={0} // Impede que a imagem diminua
+      >
+       {item.img}
+      </Box>
 
+      {/* 2. Conteúdo Central (Nome, Descrição, Ingredientes, Tamanho) */}
+      <Flex flex="1" direction="column" w="100%">
+        {/* Nome */}
+        <Text
+          fontWeight="700"
+          fontSize={{ base: "20px", md: "24px" }} // Fonte menor no mobile
+          cursor="pointer"
+          onClick={() => {
+            setModalData(item)
+            onOpen()
+          }}
+        >
+          {item.nome}
+        </Text>
 
+        {/* Descrição */}
+        <Text
+          mt={1}
+          color="gray.700"
+          fontSize={{ base: "14px", md: "16px" }}
+          noOfLines={2}
+          cursor="pointer"
+          onClick={() => {
+            setModalData(item)
+            onOpen()
+          }}
+        >
+          {item.descricao}
+        </Text>
 
-                        <Flex marginTop={3} justifyContent={"flex-end"} >
-                            <Flex background={"#FFF5DD"} alignItems={"center"} justifyContent={"center"} borderRadius={5} p={2}>
-                                <IoRemoveOutline onClick={() => {
-                                    RemoverItem(item.nome)
-                                }} size={20} color='#000' />
+        {/* Ingredientes */}
+        <Text mt={3} fontWeight="600" fontSize="14px" color="gray.800">
+          Ingredientes
+        </Text>
+        <Flex wrap="wrap" gap={2} mt={2}>
+          {item.ingredientes?.slice(0, 4).map((ingrediente) => (
+            <Badge
+              key={ingrediente}
+              px={3}
+              py={1}
+              bg="green.50"
+              color="green.700"
+              borderRadius="full"
+              fontSize="12px"
+              textTransform="none" // Chakra Badge é uppercase por padrão
+            >
+              {ingrediente}
+            </Badge>
+          ))}
+          {item.ingredientes?.length > 4 && (
+            <Badge
+              px={3}
+              py={1}
+              bg="gray.100"
+              color="gray.600"
+              borderRadius="full"
+              fontSize="12px"
+              textTransform="none"
+            >
+              +{item.ingredientes.length - 4}
+            </Badge>
+          )}
+        </Flex>
 
-                                <Box marginLeft={3} marginRight={3} >{accountRequest[item.nome] ? accountRequest[item.nome] : 0}</Box>
+        {/* Tamanho */}
+        <Text mt={3} fontWeight="600" fontSize="14px" color="gray.800">
+          Tamanho
+        </Text>
+        <Flex gap={2} mt={2} wrap="wrap">
+          {Object.keys(item.porcoes).map((p) => (
+            <Box
+              key={p}
+              px={3}
+              py={1}
+              border="1px solid"
+              borderColor="gray.200"
+              bg="white"
+              borderRadius="8px"
+              fontSize="13px"
+              color="gray.700"
+            >
+              {p}
+            </Box>
+          ))}
+        </Flex>
+      </Flex>
 
-                                <IoIosAdd size={20} onClick={() => {
-                                    adicionarItem(item.nome)
-                                }} color='#000' />
-                            </Flex>
-                        </Flex>
+      {/* 3. Coluna da Direita / Inferior (Preço e Ações) */}
+      <Flex
+        direction="column"
+        // No mobile: alinha à esquerda, largura total, margem superior
+        // No desktop: alinha à direita, largura fixa, margem esquerda
+        align={{ base: "flex-start", md: "flex-end" }}
+        justify="space-between"
+        ml={{ base: 0, md: 6 }}
+        mt={{ base: 6, md: 0 }}
+        w={{ base: "100%", md: "auto" }}
+        minW={{ base: "100%", md: "170px" }}
+      >
+        
+        {/* Preço e Botão 'Saiba mais' */}
+        <Flex 
+          direction={{ base: "row", md: "column" }} 
+          justify={{ base: "space-between", md: "flex-end" }}
+          align={{ base: "center", md: "flex-end" }}
+          w="100%"
+        >
+          {/* Preço */}
+          <Box textAlign={{ base: "left", md: "right" }} mb={{ base: 0, md: 3 }}>
+            <Text fontSize="12px" color="gray.500">
+              A partir de
+            </Text>
+            <Text
+              fontSize="24px"
+              color="green.700"
+              fontWeight="800"
+              lineHeight={1}
+            >
+              R$ {Number(item.preco).toFixed(2).replace(".", ",")}
+            </Text>
+          </Box>
 
-                    </Flex>
+          {/* Botão */}
+          <Button
+            size="sm"
+            variant="outline"
+            colorScheme="green"
+            borderRadius="8px"
+            onClick={() => {
+              setModalData(item)
+              onOpen()
+            }}
+          >
+            Saiba mais
+          </Button>
+        </Flex>
 
-                </Flex>
-
-
-            </Flex>
-        ))}
-
-
+        {/* Seletor de Quantidade */}
+        <Flex
+          mt={4}
+          bg="#FFF5DD"
+          borderRadius="10px"
+          px={3}
+          py={2}
+          align="center"
+          // No mobile: ocupa largura total para facilitar o clique
+          w={{ base: "100%", md: "auto" }} 
+          justify="center"
+        >
+          <IoRemoveOutline
+            size={20}
+            cursor="pointer"
+            color="#4A5568" // gray.600
+            onClick={() => RemoverItem(item.nome)}
+          />
+          <Text mx={4} fontWeight="bold" fontSize="16px" color="gray.800">
+            {accountRequest[item.nome] ?? 0}
+          </Text>
+          <IoIosAdd
+            size={20}
+            cursor="pointer"
+            color="#4A5568" // gray.600
+            onClick={() => adicionarItem(item.nome)}
+          />
+        </Flex>
+      </Flex>
+    </Flex>
+  </Flex>
+))}
 
         <Flex background={"#FFF9EA"} w={"100%"} borderRadius={5} padding={4} alignItems={"center"} justifyContent={"space-between"}  >
             <Flex flexDirection={"column"}  >
@@ -190,68 +342,135 @@ function Index() {
 
 
 
-        <Modal isOpen={isOpen} onClose={onClose} p={4}>
-            <ModalOverlay />
-            <ModalContent background={"none"} p={3}>
+  <Modal isOpen={isOpen} onClose={onClose} size="lg" isCentered>
+      <ModalOverlay />
+      <ModalContent borderRadius="xl" p={2}>
+        <ModalHeader paddingBottom={1}>
+          <Flex justifyContent="center" alignItems="center" flexDirection={'column'}>
+            {modalData?.imgBanner}
+            <Heading size="md" mt={3} color="gray.800">
+              {modalData?.nome}
+            </Heading>
+          </Flex>
+        </ModalHeader>
+        <ModalCloseButton />
 
-                <Card width={"100%"}>
-                    {modalData && <>
-                        <CardBody>
-                            {modalData.imgBanner}
-                            <Stack mt='6' spacing='3'>
-                                <Heading size='md'>{modalData.nome}</Heading>
-                                <Text>
-                                    {modalData.descricao}
-                                </Text>
+        {modalData && (
+          <ModalBody>
+            <Stack spacing={4}>
+              {/* Descrição Longa */}
+              <Text color="gray.600" fontSize="sm" lineHeight="relaxed">
+                {modalData.descricao}
+              </Text>
 
-                                <Flex justifyContent={"space-between"} alignItems={
-                                    "center"
-                                }>
+              {/* Seção de Ingredientes */}
+              {modalData.ingredientes && modalData.ingredientes.length > 0 && (
+                <Box>
+                  <Text fontWeight="bold" fontSize="sm" mb={2} color="gray.700">
+                    Ingredientes
+                  </Text>
+                  <Wrap spacing={2}>
+                    {modalData.ingredientes.map((ingrediente, index) => (
+                      <WrapItem key={index}>
+                        <Tag
+                          size="md"
+                          borderRadius="full"
+                          variant="subtle"
+                          bg="#E6F4EA"
+                          color="#137333"
+                          px={3}
+                          py={1}
+                          fontSize="xs"
+                        >
+                          {ingrediente}
+                        </Tag>
+                      </WrapItem>
+                    ))}
+                  </Wrap>
+                </Box>
+              )}
 
-                                    <Text fontSize='2xl'>
-                                        R$ {modalData.preco}
-                                    </Text>
+              {/* Seção de Tamanhos */}
+              {modalData.tamanhos && modalData.tamanhos.length > 0 && (
+                <Box>
+                  <Text fontWeight="bold" fontSize="sm" mb={2} color="gray.700">
+                    Tamanho
+                  </Text>
+                  <Flex gap={2}>
+                    {modalData.tamanhos.map((tamanho) => {
 
+                      return (
+                        <Button
+                          key={tamanho}
+                          size="sm"
+                          variant={ "outline"}
+                          borderColor={ "gray.600" }
+                          borderWidth="1px"
+                          bg={"gray.100"}
+                          color="gray.800"
+                          fontWeight={"bold"}
+                          borderRadius="md"
+                        
+                        >
+                          {tamanho}
+                        </Button>
+                      );
+                    })}
+                  </Flex>
+                </Box>
+              )}
+            </Stack>
+          </ModalBody>
+        )}
 
+        <Divider my={2} />
 
-                                    <Flex marginTop={3} justifyContent={"flex-end"} >
-                                        <Flex background={"#FFF5DD"} alignItems={"center"} justifyContent={"center"} borderRadius={5} p={2}>
-                                            <IoRemoveOutline onClick={() => {
-                                                RemoverItem(modalData.nome)
-                                            }} size={20} color='#000' />
+        {/* Footer com Preço, Contador e Botão Voltar */}
+        <ModalFooter justifyContent="space-between" alignItems="center" pt={1}>
+          <Flex alignItems="center" gap={4}>
+            <Text fontSize="xl" fontWeight="bold" color="gray.800">
+              R$ {modalData?.preco}
+            </Text>
 
-                                            <Box marginLeft={3} marginRight={3} >{accountRequest[modalData.nome] ? accountRequest[modalData.nome] : 0}</Box>
+            {/* Controle de Quantidade */}
+            <Flex
+              background="#FFF5DD"
+              alignItems="center"
+              justifyContent="center"
+              borderRadius="md"
+              px={2}
+              py={1}
+            >
+              <Box
+                cursor="pointer"
+                display="flex"
+                alignItems="center"
+                onClick={() => RemoverItem(modalData?.nome)}
+              >
+                <IoRemoveOutline size={18} color="#000" />
+              </Box>
 
-                                            <IoIosAdd size={20} onClick={() => {
-                                                adicionarItem(modalData.nome)
-                                            }} color='#000' />
-                                        </Flex>
-                                    </Flex>
-                                </Flex>
+              <Text mx={3} fontWeight="bold" fontSize="sm">
+                {accountRequest[modalData?.nome] ? accountRequest[modalData?.nome] : 0}
+              </Text>
 
+              <Box
+                cursor="pointer"
+                display="flex"
+                alignItems="center"
+                onClick={() => adicionarItem(modalData?.nome)}
+              >
+                <IoIosAdd size={18} color="#000" />
+              </Box>
+            </Flex>
+          </Flex>
 
-
-
-                            </Stack>
-                        </CardBody>
-                    </>}
-
-                    <Divider />
-                    <CardFooter alignItems={"flex-end"} justifyContent={"flex-end"}>
-                        <ButtonGroup spacing='2'>
-                            <Button onClick={onClose} variant='solid' >
-                                Voltar
-                            </Button>
-
-                        </ButtonGroup>
-                    </CardFooter>
-                </Card>
-
-
-
-            </ModalContent>
-        </Modal>
-
+          <Button onClick={onClose} variant="gray" bg="gray.100" color="gray.700" size="sm" px={5}>
+            Voltar
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
 
 
         <div
