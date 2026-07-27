@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/mariafood/static/js/main.c7d708a7.js",
-    "static/media/file.png": "/mariafood/static/media/file.b1bb302a07062c1cb630.png",
-    "static/media/moqueca.png": "/mariafood/static/media/moqueca.4c9c2da4bcc427c7da0b.png",
-    "static/media/strogonoff_Carne.png": "/mariafood/static/media/strogonoff_Carne.cfcb10b88444e7c59d64.png",
-    "static/media/carne.png": "/mariafood/static/media/carne.f0b13c8e526f73493dd5.png",
+    "main.js": "/mariafood/static/js/main.e9336929.js",
     "static/media/moida.png": "/mariafood/static/media/moida.c2ea1b1888745724bc68.png",
-    "static/media/strogonoff_Frango.png": "/mariafood/static/media/strogonoff_Frango.bea8249dd8f567b84752.png",
-    "static/media/frango_milanesa.png": "/mariafood/static/media/frango_milanesa.dc56c7b4c8769e1261a3.png",
-    "static/media/fricasse.png": "/mariafood/static/media/fricasse.8cdb153e0c9b2f8e709a.png",
-    "static/media/lasanha_frango.png": "/mariafood/static/media/lasanha_frango.040f3e30494251e40119.png",
-    "static/media/escondidinho.png": "/mariafood/static/media/escondidinho.598eec74a49e09eb1d17.png",
-    "static/media/frango_curry.png": "/mariafood/static/media/frango_curry.2cbe6975b653c4c58e67.png",
-    "static/media/lasanha.png": "/mariafood/static/media/lasanha.b26d34abd35f2053c068.png",
     "static/media/logo_deitada.png": "/mariafood/static/media/logo_deitada.7596cf7d18b1393f6d06.png",
+    "static/media/moqueca.png": "/mariafood/static/media/moqueca.f347dfd47f9c27c16f1e.png",
+    "static/media/file.png": "/mariafood/static/media/file.52c45686ae2f7abbcc8c.png",
+    "static/media/carne.png": "/mariafood/static/media/carne.2ea5e0bb8f83510f073d.png",
+    "static/media/frango_milanesa.png": "/mariafood/static/media/frango_milanesa.76ed8d10a04e41eb1ad3.png",
+    "static/media/lasanha_frango.png": "/mariafood/static/media/lasanha_frango.bf984fd4dfc784d8c717.png",
+    "static/media/strogonoff_Carne.png": "/mariafood/static/media/strogonoff_Carne.21162475a80e13b2eb78.png",
+    "static/media/fricasse.png": "/mariafood/static/media/fricasse.1ee322715de8adea0421.png",
+    "static/media/lasanha.jpeg": "/mariafood/static/media/lasanha.0c3f21f29a43d22ca660.jpeg",
+    "static/media/escondidinho.jpeg": "/mariafood/static/media/escondidinho.ea072dca1d55c0e94884.jpeg",
+    "static/media/frango_curry.png": "/mariafood/static/media/frango_curry.97a2ce7bbd144a41937e.png",
+    "static/media/strogonoff_Frango.png": "/mariafood/static/media/strogonoff_Frango.bf00f279f7a87b16c82f.png",
     "index.html": "/mariafood/index.html",
-    "main.c7d708a7.js.map": "/mariafood/static/js/main.c7d708a7.js.map"
+    "main.e9336929.js.map": "/mariafood/static/js/main.e9336929.js.map"
   },
   "entrypoints": [
-    "static/js/main.c7d708a7.js"
+    "static/js/main.e9336929.js"
   ]
 }
