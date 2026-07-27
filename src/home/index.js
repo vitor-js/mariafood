@@ -180,7 +180,7 @@ function Index() {
         >
           {item.descricao}
         </Text>
-
+<Text mt={1} fontSize={10}> Imagem meramente ilustrativa </Text>
         {/* Ingredientes */}
         <Text mt={3} fontWeight="600" fontSize="14px" color="gray.800">
           Ingredientes
@@ -362,6 +362,7 @@ function Index() {
               <Text color="gray.600" fontSize="sm" lineHeight="relaxed">
                 {modalData.descricao}
               </Text>
+<Text mt={0} fontSize={10}> Imagem meramente ilustrativa </Text>
 
               {/* Seção de Ingredientes */}
               {modalData.ingredientes && modalData.ingredientes.length > 0 && (

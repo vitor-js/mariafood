@@ -1,5 +1,5 @@
 
-import Lasanha from '../../assets/marmitas/lasanha.png'
+import Lasanha from '../../assets/newMarmitas/lasanha.jpeg'
 
 import Moida from '../../assets/marmitas/moida.png'
 import Frango_tomate from '../../assets/newMarmitas/frango_milanesa.png'
@@ -10,7 +10,7 @@ import Fricasse from '../../assets/newMarmitas/fricasse.png'
 import Carne from '../../assets/newMarmitas/carne.png'
 
 import Lasanha_frango from '../../assets/newMarmitas/lasanha_frango.png'
- import Escondidinho from '../../assets/newMarmitas/escondidinho.png'
+ import Escondidinho from '../../assets/newMarmitas/escondidinho.jpeg'
  import Strogonoff_Carne from '../../assets/newMarmitas/strogonoff_Carne.png'
  import Strogonoff_Frango from '../../assets/newMarmitas/strogonoff_Frango.png'
 // import Carne from '../../assets/newMarmitas/carne.png'
